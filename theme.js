@@ -99,14 +99,12 @@
   }
 
   function initTheme() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    const theme = saved === "day" ? "day" : "night";
-    applyTheme(theme, false);
+    // Day mode is temporarily disabled; keep the implementation for easy restore.
+    applyTheme("night", false);
 
     document.querySelectorAll(".theme-toggle").forEach((btn) => {
       btn.addEventListener("click", () => {
-        const next = getTheme() === "day" ? "night" : "day";
-        applyTheme(next, true);
+        applyTheme("night", false);
       });
     });
   }
