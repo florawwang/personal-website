@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flora Wang — Constellations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="theme.js"></script>
+  </head>
+  <body class="page-constellations theme-night">
+    <canvas id="stars" aria-hidden="true"></canvas>
+    <canvas id="meadow" aria-hidden="true"></canvas>
+
+    <aside class="site-nav">
+      <nav class="nav" aria-label="Main">
+        <a href="index.html" class="nav-link">home</a>
+        <a href="experience.html" class="nav-link">experience</a>
+        <a href="constellations.html" class="nav-link active">constellations</a>
+      </nav>
+      <button type="button" class="theme-toggle" aria-pressed="false">
+        <span class="theme-toggle-label">day</span>
+      </button>
+    </aside>
+
+    <div class="page">
+      <main class="main-content main-constellations">
+        <h1 class="page-title">constellations</h1>
+
+        <div class="constellation-intro">
+          <p>
+            I think a person can be understood through the things they
+            continually return to — the places, ideas, and fragments of
+            experiences that keep resurfacing, shaping how they see everything
+            else.
+          </p>
+          <p>
+            I like the quiet gravity of experiences that alter perception
+            slightly, then stay suspended somewhere in memory long afterward.
+          </p>
+          <p class="constellation-tagline">
+            This is an ongoing collection of works, places, and encounters
+            that have shaped the way I move through the world.
+          </p>
+        </div>
+
+        <div class="constellation-groups">
+          <article class="constellation-group">
+            <h2 class="group-title">literature</h2>
+            <ul class="constellation-list">
+              <li>
+                <em>Thinking, Fast and Slow</em>
+                <span class="meta">(Daniel Kahneman)</span>
+              </li>
+              <li>
+                <em>Ironies of Automation</em>
+                <span class="meta">(Lisanne Bainbridge)</span>
+              </li>
+              <li>
+                <em>Panopticism</em>
+                <span class="meta">(Michel Foucault)</span>
+              </li>
+              <li>
+                <em>Focal Colors Are Universal After All</em>
+                <span class="meta">(Terry Regier)</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="constellation-group">
+            <h2 class="group-title">exhibitions</h2>
+            <ul class="constellation-list">
+              <li>
+                Chiharu Shiota: Two Home Countries
+                <span class="meta">(San Francisco)</span>
+              </li>
+              <li>
+                Monet and Venice
+                <span class="meta">(Brooklyn)</span>
+              </li>
+              <li>
+                Ragnar Kjartansson: The Visitors
+                <span class="meta">(San Francisco)</span>
+              </li>
+              <li>
+                Lee Mingwei: Rituals of Care
+                <span class="meta">(San Francisco)</span>
+              </li>
+              <li>
+                Marina Zurkov: Parting Worlds
+                <span class="meta">(Chelsea)</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="constellation-group">
+            <h2 class="group-title">places</h2>
+            <ul class="constellation-list places-list">
+              <li>
+                Hawk Hill
+                <span class="meta">(Sausalito)<sup class="footnote-mark">*</sup></span>
+              </li>
+              <li>
+                Koko Crater Stairs
+                <span class="meta">(Oahu)<sup class="footnote-mark">*</sup></span>
+              </li>
+              <li>
+                Palace of Fine Arts
+                <span class="meta">(San Francisco)</span>
+              </li>
+              <li>
+                Burney Falls
+                <span class="meta">(Lake Shasta)</span>
+              </li>
+              <li>
+                Mission Dolores Park
+                <span class="meta">(San Francisco)</span>
+              </li>
+            </ul>
+            <p class="footnote">
+              <sup>*</sup> at sunrise, shared with friends from cal hacks
+            </p>
+          </article>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <span class="footer-orbit" aria-hidden="true"></span>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="meadow.js"></script>
+  </body>
+</html>
