@@ -127,17 +127,16 @@
     dots = [
       ...fibonacciSphere(100, SPHERE_R),
       ...ringDots(40),
-      ...orbitDots(4),
     ];
   }
 
-  function rotate(point, ay, ax) {
+  function rotate(point, ay, ax, orbitAngle) {
     let x;
     let y;
     let z;
 
     if (point.kind === "orbit") {
-      const t = point.baseAngle + ay * 0.5;
+      const t = point.baseAngle + orbitAngle;
       x = Math.cos(t) * ORBIT_R;
       y = Math.sin(t) * ORBIT_R * 0.1;
       z = Math.sin(t) * ORBIT_R * 0.32;
@@ -180,15 +179,17 @@
     const scale = logicalSize / 600;
 
     const t = time * 0.00032;
-    const ay = t;
-    const ax = 0.38 + Math.sin(t * 0.6) * 0.08;
+    const ay = 0;
+    const ax = 0.38;
+    const orbitAngle = t * 0.5;
+    const bounceY = Math.sin(time * 0.0019) * logicalSize * 0.012;
 
     const projected = dots.map((dot) => {
-      const p = rotate(dot, ay, ax);
+      const p = rotate(dot, ay, ax, orbitAngle);
       const depth = (p.z + depthScale * 0.5) / depthScale;
       return {
         sx: CX + p.x,
-        sy: CY + p.y * 0.9,
+        sy: CY + p.y * 0.9 + bounceY,
         depth,
         kind: dot.kind,
       };
