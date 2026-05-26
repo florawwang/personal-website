@@ -3,7 +3,7 @@
   --theme-progress: 0;
   --bg-deep: #05060f;
   --bg-mid: #0c1022;
-  --nav-width: 11rem;
+  --nav-width: 12rem;
   --nav-align-top: 6rem;
   --content-max: 42rem;
   --font-display: "Cormorant Garamond", Georgia, serif;
@@ -125,7 +125,11 @@ body::before {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: var(--nav-align-top) 0 1rem 2.5rem;
+  padding: var(--nav-align-top) 0 1.5rem 2.5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--accent-gold) 35%, transparent) transparent;
   background: linear-gradient(
     to right,
     color-mix(
@@ -143,19 +147,29 @@ body::before {
     transparent 100%
   );
   backdrop-filter: blur(8px);
-  border-right: 1px solid
-    color-mix(
-      in srgb,
-      rgba(154, 163, 196, 0.08) calc((1 - var(--p)) * 100%),
-      rgba(140, 180, 150, 0.2) calc(var(--p) * 100%)
-    );
+}
+
+.site-nav::after {
+  content: "";
+  position: absolute;
+  top: var(--nav-align-top);
+  bottom: 4rem;
+  right: 0;
+  width: 1px;
+  background: color-mix(
+    in srgb,
+    rgba(201, 184, 150, 0.55) calc((1 - var(--p)) * 100%),
+    rgba(90, 158, 110, 0.55) calc(var(--p) * 100%)
+  );
+  pointer-events: none;
 }
 
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: 1.45rem;
   align-items: flex-start;
+  flex-shrink: 0;
 }
 
 .nav-link {
@@ -306,12 +320,14 @@ body::before {
   width: 100%;
   max-width: calc(var(--content-max) + 3rem);
   margin: 0 auto;
-  padding: 4rem 2.5rem 3rem;
+  padding: var(--nav-align-top) 2.5rem 3rem;
 }
 
+.page-home .main-content,
 .page-experience .main-content,
 .page-projects .main-content,
-.page-more .main-content {
+.page-more .main-content,
+.page-constellations .main-content {
   max-width: calc(var(--content-max) + 16rem);
 }
 
@@ -328,7 +344,6 @@ body::before {
   flex-direction: column;
   justify-content: center;
   min-height: calc(100vh - 6rem);
-  max-width: none;
   width: 100%;
   padding: 2.5rem 0 2rem 2.5rem;
   animation: fadeUp 1s ease 0.2s both;
@@ -511,6 +526,31 @@ body::before {
 .recent-list strong {
   font-weight: 600;
   color: var(--text-primary);
+}
+
+.more-list {
+  list-style: none;
+  margin-top: 1rem;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.more-list li {
+  position: relative;
+  padding-left: 1.35rem;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.more-list li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 0.4em;
+  font-size: 0.55rem;
+  color: var(--accent-gold);
+  opacity: 0.75;
 }
 
 .company-link {
@@ -881,6 +921,10 @@ body::before {
     --nav-width: 0;
   }
 
+  .site-nav::after {
+    display: none;
+  }
+
   .site-nav {
     top: auto;
     bottom: 0;
@@ -888,11 +932,14 @@ body::before {
     right: 0;
     width: 100%;
     height: auto;
+    max-height: 40vh;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 0.5rem 1rem;
     padding: 0.85rem 1.25rem;
+    overflow-y: auto;
+    overflow-x: hidden;
     border-right: none;
     border-top: 1px solid
       color-mix(
