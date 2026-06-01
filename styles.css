@@ -331,6 +331,10 @@ body::before {
   max-width: calc(var(--content-max) + 16rem);
 }
 
+.page-projects .main-content {
+  max-width: calc(var(--content-max) + 26rem);
+}
+
 .page-placeholder {
   color: var(--text-muted);
   font-size: 1.05rem;
@@ -834,6 +838,409 @@ body::before {
   }
 }
 
+/* —— Projects —— */
+.projects-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
+  gap: 3rem;
+  align-items: start;
+}
+
+.project-detail {
+  max-width: 22rem;
+  justify-self: start;
+}
+
+.project-list {
+  list-style: none;
+  display: grid;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0;
+}
+
+.project-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.5rem 1.1rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.55rem;
+  cursor: default;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+  outline: none;
+}
+
+.project-item:focus-visible {
+  border-color: color-mix(
+    in srgb,
+    rgba(201, 184, 150, 0.5) calc((1 - var(--p)) * 100%),
+    rgba(90, 158, 110, 0.5) calc(var(--p) * 100%)
+  );
+}
+
+.project-item.is-active {
+  border-color: color-mix(
+    in srgb,
+    rgba(201, 184, 150, 0.65) calc((1 - var(--p)) * 100%),
+    rgba(90, 158, 110, 0.6) calc(var(--p) * 100%)
+  );
+  background: color-mix(
+    in srgb,
+    rgba(232, 246, 252, 0.04) calc((1 - var(--p)) * 100%),
+    rgba(255, 255, 255, 0.45) calc(var(--p) * 100%)
+  );
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.18),
+    0 0 18px var(--accent-glow);
+}
+
+.project-year {
+  color: var(--accent-gold);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding-top: 0.35rem;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.project-body {
+  min-width: 0;
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin-bottom: 0.1rem;
+  transition: color 0.3s ease;
+}
+
+.project-role {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+/* Dim non-active items once any item has been activated */
+.project-list.has-active .project-item:not(.is-active) .project-title {
+  color: var(--text-muted);
+}
+
+.project-list.has-active .project-item:not(.is-active) .project-role,
+.project-list.has-active .project-item:not(.is-active) .project-year {
+  color: var(--text-dim);
+  opacity: 0.85;
+}
+
+.project-list.has-active .project-item:not(.is-active):hover .project-title {
+  color: var(--text-primary);
+}
+
+/* —— Project detail (right panel) —— */
+.project-detail-stage {
+  position: sticky;
+  top: var(--nav-align-top);
+  display: grid;
+  min-height: 24rem;
+  transition: opacity 0.35s ease;
+}
+
+.project-detail-stage.is-empty {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.project-detail {
+  grid-row: 1;
+  grid-column: 1;
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  opacity: 0;
+  transform: translateX(-0.75rem);
+  pointer-events: none;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.project-detail.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.project-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+
+.project-photo {
+  aspect-ratio: 16 / 10;
+  border-radius: 0.65rem;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      rgba(201, 184, 150, 0.4) calc((1 - var(--p)) * 100%),
+      rgba(90, 158, 110, 0.4) calc(var(--p) * 100%)
+    );
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent-gold) 14%, transparent),
+    color-mix(in srgb, var(--accent-star) 10%, transparent)
+  );
+}
+
+.project-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-photo--contain {
+  background: #ffffff;
+  margin: 0;
+}
+
+.project-photo--contain img {
+  object-fit: cover;
+  padding: 0;
+}
+
+.project-photo--placeholder::after {
+  content: "✦";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-gold);
+  opacity: 0.35;
+  font-size: 1.4rem;
+}
+
+.project-description {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  max-width: 36rem;
+}
+
+/* —— Carousel (Cal Hacks gallery) —— */
+.project-gallery--carousel {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.carousel-viewport {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 0.65rem;
+  overflow: hidden;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      rgba(201, 184, 150, 0.4) calc((1 - var(--p)) * 100%),
+      rgba(90, 158, 110, 0.4) calc(var(--p) * 100%)
+    );
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent-gold) 14%, transparent),
+    color-mix(in srgb, var(--accent-star) 10%, transparent)
+  );
+}
+
+.carousel-track {
+  position: absolute;
+  inset: 0;
+}
+
+.carousel-slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  transform: scale(1.02);
+  transition:
+    opacity 0.5s ease,
+    transform 0.6s ease;
+  pointer-events: none;
+}
+
+.carousel-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-caption {
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+  margin: 0;
+  min-height: 1.4em;
+  padding: 0 0.5rem;
+}
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.carousel-btn {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid
+    color-mix(in srgb, var(--accent-gold) 45%, transparent);
+  border-radius: 50%;
+  background: color-mix(
+    in srgb,
+    rgba(5, 6, 15, 0.45) calc((1 - var(--p)) * 100%),
+    rgba(255, 255, 255, 0.6) calc(var(--p) * 100%)
+  );
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1;
+  padding: 0 0 0.15rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+  flex-shrink: 0;
+}
+
+.carousel-btn:hover,
+.carousel-btn:focus-visible {
+  color: var(--accent-star);
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 14px var(--accent-glow);
+  outline: none;
+}
+
+.carousel-counter {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.65rem;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  color: var(--text-primary);
+  background: color-mix(
+    in srgb,
+    rgba(5, 6, 15, 0.55) calc((1 - var(--p)) * 100%),
+    rgba(255, 255, 255, 0.7) calc(var(--p) * 100%)
+  );
+  backdrop-filter: blur(6px);
+  z-index: 2;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.carousel-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: color-mix(in srgb, var(--text-dim) 70%, transparent);
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.carousel-dot:hover,
+.carousel-dot:focus-visible {
+  background: var(--accent-gold);
+  outline: none;
+}
+
+.carousel-dot.is-active {
+  background: var(--accent-gold);
+  transform: scale(1.35);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+@media (max-width: 960px) {
+  .projects-stage {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .project-detail-stage {
+    position: relative;
+    top: auto;
+    min-height: auto;
+    display: block;
+  }
+
+  .project-detail {
+    position: relative;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    display: none;
+  }
+
+  .project-detail.is-visible {
+    display: grid;
+  }
+}
+
+@media (max-width: 720px) {
+  .project-item {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+    padding: 0.75rem 0.75rem;
+  }
+
+  .project-year {
+    padding-top: 0;
+  }
+}
+
 /* —— Constellations —— */
 .constellation-intro {
   margin-bottom: 4rem;
@@ -959,6 +1366,18 @@ body::before {
   animation: pulse 4s ease-in-out infinite;
 }
 
+/* Updated stamp at the bottom of the nav rail */
+.nav-meta {
+  margin-top: auto;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: lowercase;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
 @keyframes pulse {
   0%,
   100% {
@@ -1031,6 +1450,10 @@ body::before {
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0.5rem;
+  }
+
+  .nav-meta {
+    display: none;
   }
 
   .nav-link::before {

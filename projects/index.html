@@ -28,15 +28,190 @@
       <button type="button" class="theme-toggle" aria-pressed="false">
         <span class="theme-toggle-label">day</span>
       </button>
+      <p class="nav-meta">updated june 2026</p>
     </aside>
 
     <div class="page">
       <main class="main-content main-projects">
         <h1 class="page-title">projects</h1>
 
-        <p class="page-placeholder">
-          A collection of things I've built — coming soon.
-        </p>
+        <div class="projects-stage">
+          <ul class="project-list">
+            <li>
+              <article
+                class="project-item"
+                data-project="paragon"
+                tabindex="0"
+              >
+                <span class="project-year">2025</span>
+                <div class="project-body">
+                  <h3 class="project-title">data governance and privacy strategy</h3>
+                  <p class="project-role">Tech Policy Fellow, Paragon Policy Fellowship</p>
+                </div>
+              </article>
+            </li>
+
+            <li>
+              <article
+                class="project-item"
+                data-project="bow"
+                tabindex="0"
+              >
+                <span class="project-year">2024</span>
+                <div class="project-body">
+                  <h3 class="project-title">stress analysis of recurve bow limbs</h3>
+                  <p class="project-role">Undergraduate Researcher, UC Berkeley</p>
+                </div>
+              </article>
+            </li>
+
+            <li>
+              <article
+                class="project-item"
+                data-project="miscentering"
+                tabindex="0"
+              >
+                <span class="project-year">2023</span>
+                <div class="project-body">
+                  <h3 class="project-title">scaling relations in redMaPPer clusters</h3>
+                  <p class="project-role">Research Assistant, UC Santa Cruz</p>
+                </div>
+              </article>
+            </li>
+
+            <li>
+              <article
+                class="project-item"
+                data-project="calhacks"
+                tabindex="0"
+              >
+                <span class="project-year">2023–2025</span>
+                <div class="project-body">
+                  <h3 class="project-title">Cal Hacks</h3>
+                  <p class="project-role">President, Sponsorship &amp; Logistics Team</p>
+                </div>
+              </article>
+            </li>
+          </ul>
+
+          <aside class="project-detail-stage" aria-live="polite">
+            <article class="project-detail" data-project="paragon">
+              <div class="project-gallery">
+                <figure class="project-photo">
+                  <img
+                    src="/assets/paragon/missoula-slide.png"
+                    alt="Slide titled 'Missoula, MT: Data Sharing and Privacy' from the Paragon Policy Fellowship deck."
+                  />
+                </figure>
+              </div>
+              <p class="project-description">
+                Built a feasibility roadmap for Montana's first city-level data
+                governance certification, balancing privacy compliance,
+                technical complexity, and operational readiness across
+                municipal systems.
+              </p>
+            </article>
+
+            <article class="project-detail" data-project="bow">
+              <div class="project-gallery">
+                <figure class="project-photo project-photo--contain">
+                  <img
+                    src="/assets/bow/fea-simulation.png"
+                    alt="FEA stress simulation of a recurve bow limb showing deformation under load with a red, yellow, and green color gradient indicating stress distribution. Max displacement 14.656, min 0.087."
+                  />
+                </figure>
+              </div>
+              <p class="project-description">
+                Built high-fidelity CAD replicas of Olympic recurve bow limbs
+                and ran 2,000+ FEA simulations to study how carbon fiber
+                layups affect deformation and shot consistency.
+              </p>
+            </article>
+
+            <article class="project-detail" data-project="miscentering">
+              <div class="project-gallery">
+                <figure class="project-photo project-photo--contain">
+                  <img
+                    src="/assets/miscentering/scaling-relation.png"
+                    alt="X-ray temperature vs. redMaPPer richness scaling relation for target and serendipitous galaxy clusters, with best-fit lines and 68% confidence intervals."
+                  />
+                </figure>
+              </div>
+              <p class="project-description">
+                Analyzed 500+ galaxy cluster observations to quantify
+                mis-centering bias in redMaPPer X-ray–richness scaling
+                relations. Primary author on the resulting MNRAS publication.
+              </p>
+            </article>
+
+            <article class="project-detail" data-project="calhacks">
+              <div class="project-gallery project-gallery--carousel" data-carousel>
+                <div class="carousel-viewport">
+                  <div class="carousel-track">
+                    <figure
+                      class="carousel-slide is-active"
+                      data-caption="cal hacks team photo!"
+                    >
+                      <img src="/assets/calhacks/team.png" alt="cal hacks team photo" />
+                    </figure>
+                    <figure
+                      class="carousel-slide"
+                      data-caption="some alumni I look up to!"
+                    >
+                      <img src="/assets/calhacks/letters.png" alt="some alumni I look up to!" />
+                    </figure>
+                    <figure
+                      class="carousel-slide"
+                      data-caption="wouldn't have been able to run this event w/o my co-pres, sam!"
+                    >
+                      <img src="/assets/calhacks/dinner.png" alt="would not have been able to run this event w/o sam!" />
+                    </figure>
+                    <figure
+                      class="carousel-slide"
+                      data-caption="the main hacking area during cal hacks 12.0"
+                    >
+                      <img src="/assets/calhacks/hall.png" alt="Cal Hacks main hall packed with hackers" />
+                    </figure>
+                  </div>
+                  <span class="carousel-counter" data-carousel-counter>1 / 4</span>
+                </div>
+                <p class="carousel-caption" data-carousel-caption>
+                  team photo at the palace of fine arts
+                </p>
+                <div class="carousel-controls">
+                  <button
+                    type="button"
+                    class="carousel-btn carousel-btn--prev"
+                    aria-label="Previous photo"
+                    data-carousel-prev
+                  >
+                    <span aria-hidden="true">‹</span>
+                  </button>
+                  <div class="carousel-dots" data-carousel-dots>
+                    <button type="button" class="carousel-dot is-active" aria-label="Go to photo 1"></button>
+                    <button type="button" class="carousel-dot" aria-label="Go to photo 2"></button>
+                    <button type="button" class="carousel-dot" aria-label="Go to photo 3"></button>
+                    <button type="button" class="carousel-dot" aria-label="Go to photo 4"></button>
+                  </div>
+                  <button
+                    type="button"
+                    class="carousel-btn carousel-btn--next"
+                    aria-label="Next photo"
+                    data-carousel-next
+                  >
+                    <span aria-hidden="true">›</span>
+                  </button>
+                </div>
+              </div>
+              <p class="project-description">
+                Led a 40-person team to scale the world's largest collegiate
+                hackathon to 3,300 attendees and 700 projects, handling all venue operations and sourcing
+                $1.5M+ in sponsorships across two years as president and on
+                the sponsorship &amp; logistics team.
+              </p>
+            </article>
+          </aside>
+        </div>
       </main>
 
       <footer class="site-footer">
@@ -46,5 +221,93 @@
 
     <script src="/script.js"></script>
     <script src="/meadow.js"></script>
+    <script>
+      (function () {
+        const items = document.querySelectorAll(".project-item");
+        const details = document.querySelectorAll(".project-detail");
+        const list = document.querySelector(".project-list");
+        const stage = document.querySelector(".projects-stage");
+        const detailStage = document.querySelector(".project-detail-stage");
+        if (!items.length || !details.length || !list || !stage || !detailStage)
+          return;
+
+        let activeKey = null;
+
+        function setActive(key) {
+          if (key === activeKey) return;
+          activeKey = key;
+
+          items.forEach((item) => {
+            item.classList.toggle("is-active", item.dataset.project === key);
+          });
+          details.forEach((detail) => {
+            detail.classList.toggle(
+              "is-visible",
+              detail.dataset.project === key
+            );
+          });
+          list.classList.toggle("has-active", key !== null);
+          detailStage.classList.toggle("is-empty", key === null);
+        }
+
+        function clearActive() {
+          setActive(null);
+        }
+
+        items.forEach((item) => {
+          item.addEventListener("mouseenter", () =>
+            setActive(item.dataset.project)
+          );
+          item.addEventListener("focus", () =>
+            setActive(item.dataset.project)
+          );
+        });
+
+        // Clear when cursor leaves the whole projects area (list + detail panel)
+        stage.addEventListener("mouseleave", clearActive);
+
+        // Start empty so nothing shows until the user hovers
+        clearActive();
+      })();
+
+      (function () {
+        const carousels = document.querySelectorAll("[data-carousel]");
+        carousels.forEach((root) => {
+          const slides = root.querySelectorAll(".carousel-slide");
+          const dots = root.querySelectorAll(".carousel-dot");
+          const prev = root.querySelector("[data-carousel-prev]");
+          const next = root.querySelector("[data-carousel-next]");
+          const counter = root.querySelector("[data-carousel-counter]");
+          const caption = root.querySelector("[data-carousel-caption]");
+          if (!slides.length) return;
+
+          const captions = Array.from(slides).map(
+            (slide) => slide.dataset.caption || ""
+          );
+
+          let idx = 0;
+
+          function show(newIdx) {
+            idx = ((newIdx % slides.length) + slides.length) % slides.length;
+            slides.forEach((slide, i) => {
+              slide.classList.toggle("is-active", i === idx);
+            });
+            dots.forEach((dot, i) => {
+              dot.classList.toggle("is-active", i === idx);
+            });
+            if (counter) counter.textContent = `${idx + 1} / ${slides.length}`;
+            if (caption) caption.textContent = captions[idx];
+          }
+
+          if (prev) prev.addEventListener("click", () => show(idx - 1));
+          if (next) next.addEventListener("click", () => show(idx + 1));
+          dots.forEach((dot, i) =>
+            dot.addEventListener("click", () => show(i))
+          );
+
+          show(0);
+        });
+      })();
+    </script>
   </body>
 </html>
