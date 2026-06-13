@@ -327,7 +327,8 @@ body::before {
 .page-experience .main-content,
 .page-projects .main-content,
 .page-about .main-content,
-.page-constellations .main-content {
+.page-constellations .main-content,
+.page-calhacks .main-content {
   max-width: calc(var(--content-max) + 16rem);
 }
 
@@ -1347,6 +1348,393 @@ body::before {
   color: var(--accent-gold);
 }
 
+/* —— Secret Cal Hacks page —— */
+.secret-tag {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: lowercase;
+  color: var(--accent-gold);
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+
+.calhacks-title {
+  margin-bottom: 1.25rem;
+}
+
+.calhacks-lede {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  line-height: 1.75;
+  color: var(--text-muted);
+  max-width: 58rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.calhacks-stats-label {
+  margin-bottom: 1.25rem;
+}
+
+.calhacks-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.stat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  bottom: 0.15rem;
+  width: 1px;
+  background: color-mix(
+    in srgb,
+    rgba(201, 184, 150, 0.5) calc((1 - var(--p)) * 100%),
+    rgba(90, 158, 110, 0.5) calc(var(--p) * 100%)
+  );
+}
+
+.stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--accent-star);
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: lowercase;
+  color: var(--text-dim);
+}
+
+.calhacks-contributions {
+  margin-bottom: 3.5rem;
+}
+
+.contrib-toggle {
+  max-width: 42rem;
+  border-radius: 0.85rem;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      rgba(201, 184, 150, 0.4) calc((1 - var(--p)) * 100%),
+      rgba(90, 158, 110, 0.4) calc(var(--p) * 100%)
+    );
+  background: color-mix(
+    in srgb,
+    rgba(12, 16, 34, 0.4) calc((1 - var(--p)) * 100%),
+    rgba(255, 255, 255, 0.5) calc(var(--p) * 100%)
+  );
+  backdrop-filter: blur(7px);
+  overflow: hidden;
+}
+
+.contrib-summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.4rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: lowercase;
+  color: var(--accent-gold);
+  transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.contrib-summary::-webkit-details-marker {
+  display: none;
+}
+
+.contrib-summary:hover,
+.contrib-summary:focus-visible {
+  color: var(--accent-star);
+  outline: none;
+}
+
+.contrib-summary-icon {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--accent-gold);
+  transition: transform 0.3s ease, color 0.25s ease;
+}
+
+.contrib-toggle[open] .contrib-summary-icon {
+  transform: rotate(45deg);
+}
+
+.contrib-toggle[open] .contrib-summary {
+  color: var(--accent-star);
+}
+
+.contrib-list {
+  list-style: none;
+  display: grid;
+  gap: 0.9rem;
+  max-width: 42rem;
+  padding: 0.25rem 1.4rem 1.4rem;
+}
+
+.contrib-list li {
+  position: relative;
+  padding-left: 1.35rem;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.contrib-list li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  font-size: 0.55rem;
+  color: var(--accent-gold);
+  opacity: 0.75;
+}
+
+.contrib-list strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cal-event {
+  border-radius: 0.85rem;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      rgba(201, 184, 150, 0.32) calc((1 - var(--p)) * 100%),
+      rgba(90, 158, 110, 0.32) calc(var(--p) * 100%)
+    );
+  background: color-mix(
+    in srgb,
+    rgba(12, 16, 34, 0.4) calc((1 - var(--p)) * 100%),
+    rgba(255, 255, 255, 0.45) calc(var(--p) * 100%)
+  );
+  backdrop-filter: blur(7px);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.cal-event-summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1.1rem 1.4rem;
+  transition: background-color 0.25s ease;
+}
+
+.cal-event-summary::-webkit-details-marker {
+  display: none;
+}
+
+.cal-event-summary:hover,
+.cal-event-summary:focus-visible {
+  outline: none;
+  background: color-mix(in srgb, var(--accent-gold) 8%, transparent);
+}
+
+.cal-event-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.cal-event-date {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+.cal-event-icon {
+  margin-left: auto;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--accent-gold);
+  transition: transform 0.3s ease;
+  align-self: center;
+}
+
+.cal-event[open] .cal-event-icon {
+  transform: rotate(45deg);
+}
+
+.cal-event[open] .cal-event-summary {
+  border-bottom: 1px solid
+    color-mix(
+      in srgb,
+      rgba(201, 184, 150, 0.22) calc((1 - var(--p)) * 100%),
+      rgba(90, 158, 110, 0.22) calc(var(--p) * 100%)
+    );
+}
+
+.cal-event-note {
+  margin: 0;
+  padding: 1.1rem 1.4rem 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.cal-event .calhacks-gallery {
+  padding: 1.25rem 1.4rem;
+  margin-top: 0;
+}
+
+.cal-event-empty {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+.calhacks-gallery {
+  columns: 3 14rem;
+  column-gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Uniform grid variant — tidy rectangular box of equal tiles */
+.calhacks-gallery--grid {
+  columns: unset;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.calhacks-gallery--grid .cal-photo {
+  margin: 0;
+}
+
+.calhacks-gallery--grid .cal-photo img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+@media (max-width: 720px) {
+  .calhacks-gallery--grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.cal-photo {
+  break-inside: avoid;
+  margin: 0 0 1rem;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      rgba(201, 184, 150, 0.35) calc((1 - var(--p)) * 100%),
+      rgba(90, 158, 110, 0.35) calc(var(--p) * 100%)
+    );
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.cal-photo:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.3),
+    0 0 24px var(--accent-glow);
+}
+
+.cal-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cal-photo--crop img {
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.cal-photo figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.5rem 0.9rem 0.7rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #f4f1e8;
+  background: linear-gradient(
+    to top,
+    rgba(5, 6, 15, 0.82),
+    rgba(5, 6, 15, 0)
+  );
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.cal-photo:hover figcaption,
+.cal-photo:focus-within figcaption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.secret-footnote {
+  margin-top: 3.5rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .calhacks-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 1rem;
+  }
+
+  .calhacks-gallery {
+    columns: 2 9rem;
+  }
+
+  .cal-photo figcaption {
+    opacity: 1;
+    transform: none;
+    font-size: 0.8rem;
+  }
+}
+
 /* —— Footer —— */
 .site-footer {
   display: flex;
@@ -1364,6 +1752,21 @@ body::before {
     0 0 12px var(--accent-glow),
     0 0 24px rgba(201, 184, 150, 0.15);
   animation: pulse 4s ease-in-out infinite;
+}
+
+.footer-orbit--secret {
+  display: block;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-orbit--secret:hover,
+.footer-orbit--secret:focus-visible {
+  transform: scale(1.6);
+  box-shadow:
+    0 0 18px var(--accent-glow),
+    0 0 36px rgba(201, 184, 150, 0.3);
+  outline: none;
 }
 
 /* Updated stamp at the bottom of the nav rail */
