@@ -1709,6 +1709,77 @@ body::before {
   transform: translateY(0);
 }
 
+.calhacks-thoughts-section {
+  margin-top: 3.5rem;
+}
+
+.thoughts-list {
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.thought-card {
+  border-radius: 0.85rem;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      rgba(201, 184, 150, 0.32) calc((1 - var(--p)) * 100%),
+      rgba(90, 158, 110, 0.32) calc(var(--p) * 100%)
+    );
+  background: color-mix(
+    in srgb,
+    rgba(12, 16, 34, 0.4) calc((1 - var(--p)) * 100%),
+    rgba(255, 255, 255, 0.45) calc(var(--p) * 100%)
+  );
+  backdrop-filter: blur(7px);
+  padding: 1.25rem 1.4rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.thought-card:hover {
+  border-color: color-mix(
+    in srgb,
+    rgba(201, 184, 150, 0.6) calc((1 - var(--p)) * 100%),
+    rgba(90, 158, 110, 0.55) calc(var(--p) * 100%)
+  );
+  box-shadow: 0 0 18px var(--accent-glow);
+}
+
+.thought-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.thought-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.thought-status {
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  white-space: nowrap;
+}
+
+.thought-excerpt {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
 .secret-footnote {
   margin-top: 3.5rem;
   font-family: var(--font-display);
