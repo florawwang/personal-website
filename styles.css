@@ -365,7 +365,7 @@ body::before {
 
 .home-layout {
   position: relative;
-  min-height: calc(100vh - 5rem);
+  min-height: calc(100vh - 18rem);
   width: 100%;
 }
 
@@ -394,6 +394,83 @@ body::before {
     0 18px 60px rgba(60, 110, 70, 0.12),
     inset 0 0 0 1px rgba(255, 255, 255, 0.36);
   backdrop-filter: blur(7px);
+}
+
+/* —— Home: communities strip —— */
+.communities {
+  position: relative;
+  z-index: 2;
+  margin-top: 1.5rem;
+  max-width: 60rem;
+}
+
+.communities .section-label {
+  margin-bottom: 1.5rem;
+}
+
+.communities-row {
+  display: grid;
+  grid-template-columns: 1fr 1.18fr 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.community {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.community-photo {
+  height: clamp(9rem, 14vw, 12.5rem);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      rgba(201, 184, 150, 0.35) calc((1 - var(--p)) * 100%),
+      rgba(90, 158, 110, 0.35) calc(var(--p) * 100%)
+    );
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.community:hover .community-photo {
+  transform: translateY(-4px);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.3),
+    0 0 24px var(--accent-glow);
+}
+
+.community-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.community figcaption {
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: lowercase;
+  color: var(--accent-gold);
+}
+
+@media (max-width: 720px) {
+  .communities {
+    margin-top: 3rem;
+  }
+
+  .communities-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .community-photo {
+    height: clamp(11rem, 55vw, 16rem);
+  }
 }
 
 .main-constellations {
@@ -1604,6 +1681,38 @@ body::before {
   color: var(--text-muted);
 }
 
+.note-expand > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.note-expand > summary::-webkit-details-marker {
+  display: none;
+}
+
+.note-expand .note-more {
+  font-style: normal;
+  font-size: 0.82em;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: color-mix(in srgb, var(--accent-gold) 70%, var(--text-muted));
+  transition: color 0.2s ease;
+}
+
+.note-expand > summary:hover .note-more {
+  color: var(--accent-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.note-expand[open] .note-more {
+  display: none;
+}
+
+.note-expand p {
+  margin: 0.7rem 0 0;
+}
+
 .cal-event .calhacks-gallery {
   padding: 1.25rem 1.4rem;
   margin-top: 0;
@@ -1707,6 +1816,10 @@ body::before {
 .cal-photo:focus-within figcaption {
   opacity: 1;
   transform: translateY(0);
+}
+
+.calhacks-bts-section {
+  margin-top: 3.5rem;
 }
 
 .calhacks-thoughts-section {
