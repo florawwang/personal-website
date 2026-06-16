@@ -410,7 +410,7 @@ body::before {
 
 .communities-row {
   display: grid;
-  grid-template-columns: 1fr 1.18fr 1fr;
+  grid-template-columns: 1fr 1.28fr 1fr;
   gap: 1.25rem;
   align-items: start;
 }
