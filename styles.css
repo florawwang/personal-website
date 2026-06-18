@@ -894,10 +894,32 @@ body::before {
   font-size: 0.65rem;
 }
 
+.experience-section .section-label {
+  margin-bottom: 1.25rem;
+}
+
 @media (max-width: 720px) {
+  .experience-sections {
+    gap: 3rem;
+  }
+
+  .experience-section .section-label {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid
+      color-mix(
+        in srgb,
+        var(--accent-gold) 28%,
+        transparent
+      );
+    color: var(--accent-gold);
+    letter-spacing: 0.24em;
+  }
+
   .experience-item {
     grid-template-columns: 1fr;
-    gap: 0.65rem;
+    gap: 0.75rem;
+    padding: 1.75rem 0;
   }
 
   .experience-heading > div:first-child,
@@ -908,7 +930,44 @@ body::before {
 
   .experience-meta {
     grid-row: 1;
-    gap: 0.2rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.5rem;
+    margin-bottom: 0.15rem;
+    padding-top: 0;
+  }
+
+  .experience-meta span:first-child::before {
+    content: "·";
+    margin-right: 0.5rem;
+    color: var(--text-dim);
+  }
+
+  .experience-meta span:last-child {
+    white-space: normal;
+  }
+
+  .experience-heading > div:first-child {
+    grid-row: 2;
+    margin-bottom: 0;
+  }
+
+  .experience-heading h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .experience-item ul {
+    grid-row: 3;
+    margin-top: 0.25rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid
+      color-mix(
+        in srgb,
+        rgba(154, 163, 196, 0.14) calc((1 - var(--p)) * 100%),
+        rgba(80, 130, 90, 0.2) calc(var(--p) * 100%)
+      );
   }
 
   .experience-section::before {
@@ -1731,6 +1790,29 @@ body::before {
   margin-top: 0.5rem;
 }
 
+.gallery-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.gallery-section-head .section-label {
+  margin-bottom: 0;
+}
+
+.gallery-hint {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
 /* Uniform grid variant — tidy rectangular box of equal tiles */
 .calhacks-gallery--grid {
   columns: unset;
@@ -1916,6 +1998,10 @@ body::before {
     opacity: 1;
     transform: none;
     font-size: 0.8rem;
+  }
+
+  .gallery-hint {
+    display: none;
   }
 }
 
