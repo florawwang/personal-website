@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flora Wang — Sky Atlas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/sky/sky.css" />
+  </head>
+  <body class="sky-page">
+    <canvas id="sky-canvas" aria-hidden="true"></canvas>
+
+    <div class="sky-ui">
+      <header class="sky-header">
+        <p class="sky-brand">flora wang</p>
+        <a href="/" class="sky-exit">classic site</a>
+      </header>
+
+      <p class="sky-hint" id="sky-hint">drag to look around · click a constellation</p>
+
+      <button type="button" class="sky-back" id="sky-back" hidden>
+        ← back to sky
+      </button>
+
+      <div
+        class="sky-label"
+        id="sky-label"
+        hidden
+        role="status"
+        aria-live="polite"
+      ></div>
+
+      <aside class="sky-preview" id="sky-preview" hidden aria-live="polite">
+        <article class="sky-preview-card">
+          <div class="sky-preview-head">
+            <span class="sky-preview-year" id="sky-preview-year"></span>
+            <div class="sky-preview-body">
+              <h3 class="sky-preview-title" id="sky-preview-title"></h3>
+              <p class="sky-preview-role" id="sky-preview-role"></p>
+            </div>
+          </div>
+          <figure class="sky-preview-photo" id="sky-preview-photo">
+            <img id="sky-preview-image" alt="" />
+          </figure>
+          <p class="sky-preview-desc" id="sky-preview-desc"></p>
+          <a class="sky-preview-link" id="sky-preview-link" href="/projects/"
+            >view project →</a
+          >
+        </article>
+      </aside>
+    </div>
+
+    <script src="/sky/sky-data.js"></script>
+    <script src="/sky/sky.js"></script>
+  </body>
+</html>

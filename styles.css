@@ -1402,6 +1402,35 @@ body::before {
   letter-spacing: 0.02em;
 }
 
+.sky-atlas-link {
+  position: fixed;
+  top: 1.5rem;
+  right: clamp(1rem, 3vw, 2.5rem);
+  z-index: 10;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--accent-gold);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-gold) 40%, transparent);
+  transition: color 0.2s ease, border-color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.sky-atlas-link:hover,
+.sky-atlas-link:focus-visible {
+  color: var(--accent-star);
+  border-color: var(--accent-star);
+  text-shadow: 0 0 12px var(--accent-glow);
+  outline: none;
+}
+
+@media (max-width: 720px) {
+  .sky-atlas-link {
+    position: absolute;
+    font-size: 0.82rem;
+  }
+}
+
 .constellation-groups {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
