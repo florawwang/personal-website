@@ -149,9 +149,10 @@ body.sky-page {
 }
 
 .sky-preview {
+  /* positioned next to the hovered star by sky.js (left/top inline styles) */
   position: absolute;
-  right: clamp(1rem, 4vw, 2.5rem);
-  bottom: clamp(1rem, 4vw, 2.5rem);
+  left: 0;
+  top: 0;
   width: min(20rem, calc(100vw - 2rem));
   pointer-events: auto;
   animation: sky-panel-in 0.35s ease;
@@ -262,9 +263,11 @@ body.sky-page {
 }
 
 @media (max-width: 720px) {
+  /* on small screens sky.js skips inline positioning; pin as a bottom sheet */
   .sky-preview {
     left: 1rem;
     right: 1rem;
+    top: auto;
     bottom: 1rem;
     width: auto;
   }

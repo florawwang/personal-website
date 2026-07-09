@@ -10,6 +10,7 @@
  *     Extra silhouette stars stay as faint decoration.
  *     - label: hover text
  *     - href: where clicking goes
+ *     - cta: optional link text on the card (default "view project →")
  *     - preview: optional card shown on hover
  *       { year, title, role, image, imageContain?, description }
  *     (x, y, size, warm on nodes are ignored — the silhouette drives layout)
@@ -130,7 +131,7 @@ window.SKY_DATA = [
     nodes: [
       {
         label: "Cal Hacks",
-        href: "/projects/",
+        href: "/projects/#calhacks",
         x: 0,
         y: 0,
         size: 1.45,
@@ -146,7 +147,7 @@ window.SKY_DATA = [
       },
       {
         label: "data governance & privacy",
-        href: "/projects/",
+        href: "/projects/#paragon",
         x: 0,
         y: -0.38,
         size: 1.15,
@@ -162,7 +163,7 @@ window.SKY_DATA = [
       },
       {
         label: "recurve bow limbs",
-        href: "/projects/",
+        href: "/projects/#bow",
         x: 0.44,
         y: 0.1,
         size: 1.2,
@@ -179,7 +180,7 @@ window.SKY_DATA = [
       },
       {
         label: "redMaPPer clusters",
-        href: "/projects/",
+        href: "/projects/#miscentering",
         x: -0.44,
         y: 0.1,
         size: 1.1,
@@ -209,39 +210,25 @@ window.SKY_DATA = [
     label: "constellations",
     anchor: { x: 0.583, y: 0.68 },
     shape: {
-      // open arc that never closes, Corona Borealis-style
+      // simple three-star arc, Aries-style
       stars: [
-        { x: -0.5, y: -0.05, size: 0.85, warm: 0.4 },
-        { x: -0.28, y: -0.3, size: 1.1, warm: 0.6 },
-        { x: 0.02, y: -0.38, size: 1.3, warm: 0.32 },
-        { x: 0.32, y: -0.24, size: 0.95, warm: 0.55 },
-        { x: 0.46, y: 0.06, size: 1.05, warm: 0.7 },
-        { x: 0.2, y: 0.34, size: 0.8, warm: 0.45 },
-        { x: -0.18, y: 0.42, size: 1.15, warm: 0.25 },
+        { x: -0.45, y: 0.22, size: 1.1, warm: 0.55 },
+        { x: 0.02, y: -0.2, size: 1.3, warm: 0.35 },
+        { x: 0.48, y: -0.02, size: 0.9, warm: 0.65 },
       ],
       lines: [
         [0, 1],
         [1, 2],
-        [2, 3],
-        [3, 4],
-        [4, 5],
-        [5, 6],
       ],
     },
     nodes: [
-      { label: "literature", href: "/constellations/", x: -0.3, y: -0.25, size: 1.15 },
-      { label: "exhibitions", href: "/constellations/", x: 0.35, y: -0.2, size: 1.2 },
-      { label: "places", href: "/constellations/", x: 0, y: 0.35, size: 1.25 },
-      { label: "hawk hill", href: "/constellations/", x: -0.42, y: 0.15, size: 1 },
-      { label: "palace of fine arts", href: "/constellations/", x: 0.4, y: 0.22, size: 1.1 },
+      { label: "literature", href: "/constellations/", cta: "view page →" },
+      { label: "exhibitions", href: "/constellations/", cta: "view page →" },
+      { label: "places", href: "/constellations/", cta: "view page →" },
     ],
     nodeLines: [
       [0, 1],
-      [0, 2],
       [1, 2],
-      [2, 3],
-      [2, 4],
-      [3, 4],
     ],
   },
   {

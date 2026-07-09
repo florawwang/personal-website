@@ -266,8 +266,23 @@
         // Clear when cursor leaves the whole projects area (list + detail panel)
         stage.addEventListener("mouseleave", clearActive);
 
-        // Start empty so nothing shows until the user hovers
-        clearActive();
+        // Deep link (e.g. /projects/#calhacks from the sky atlas): open that
+        // project right away. Otherwise start empty until the user hovers.
+        function applyHash() {
+          const key = window.location.hash.slice(1);
+          const match = key
+            ? document.querySelector(`.project-item[data-project="${key}"]`)
+            : null;
+          if (match) {
+            setActive(key);
+            match.focus({ preventScroll: true });
+          } else {
+            clearActive();
+          }
+        }
+
+        window.addEventListener("hashchange", applyHash);
+        applyHash();
       })();
 
       (function () {

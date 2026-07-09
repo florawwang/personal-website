@@ -5,12 +5,12 @@
 
   // Angular size (radians) of constellation silhouettes; when focused, the
   // same silhouette simply grows by EXPAND_GROWTH.
-  const SHAPE_SPREAD = 0.19;
+  const SHAPE_SPREAD = 0.28;
   const EXPAND_GROWTH = 0.65;
 
-  const FOCAL_DEFAULT = 0.8; // multiplied by min(width, height)
-  const FOCAL_FOCUSED = 1.35;
-  const FOCAL_MIN = 0.6;
+  const FOCAL_DEFAULT = 0.55; // multiplied by min(width, height)
+  const FOCAL_FOCUSED = 0.95;
+  const FOCAL_MIN = 0.45;
   const FOCAL_MAX = 2.6;
 
   const canvas = document.getElementById("sky-canvas");
@@ -75,6 +75,9 @@
   let hoverConstellationId = null;
   let hoverNode = null;
   let previewNodeKey = null;
+  let previewHover = false; // pointer is over the preview card itself
+  let previewPinnedNode = null; // node the visible card belongs to
+  let previewLastHoverAt = 0; // grace period while moving star → card
 
   let dragging = false;
   let dragMoved = false;
@@ -120,6 +123,14 @@
 
   function easeOutCubic(t) {
     return 1 - Math.pow(1 - t, 3);
+  }
+
+  // Tag outbound links so the destination page can offer a "back to the sky"
+  // link (see script.js).
+  function withFromSky(href) {
+    const url = new URL(href || "/", window.location.origin);
+    url.searchParams.set("from", "sky");
+    return url.pathname + url.search + url.hash;
   }
 
   // Tangent basis at a sky direction (east & local up) for laying out star offsets
@@ -616,24 +627,77 @@
     label.hidden = true;
   }
 
+  // Place the card right beside the star (flipping to the other side near
+  // screen edges) so the pointer can travel onto it without crossing much sky.
+  function positionPreview(p) {
+    if (width <= 720) {
+      previewEl.style.left = "";
+      previewEl.style.top = "";
+      return;
+    }
+    const margin = 12;
+    const gap = 22;
+    const rect = previewEl.getBoundingClientRect();
+    const w = rect.width || 320;
+    const h = rect.height || 280;
+
+    let left = p.x + gap;
+    if (left + w > width - margin) left = p.x - gap - w;
+    left = Math.max(margin, Math.min(left, width - w - margin));
+
+    let top = p.y - h * 0.35;
+    top = Math.max(margin, Math.min(top, height - h - margin));
+
+    previewEl.style.left = `${left}px`;
+    previewEl.style.top = `${top}px`;
+  }
+
+  function hidePreview() {
+    previewEl.hidden = true;
+    previewNodeKey = null;
+    previewPinnedNode = null;
+  }
+
   function updatePreview() {
     if (!previewEl) return;
 
-    if (!focusedId || !hoverNode || expandT < 0.4) {
-      previewEl.hidden = true;
-      previewNodeKey = null;
+    // Keep showing the current card while the pointer is on the card itself,
+    // or briefly after leaving the star (grace for the star → card trip).
+    let active = hoverNode;
+    if (active) {
+      previewLastHoverAt = performance.now();
+    } else if (
+      previewPinnedNode &&
+      (previewHover || performance.now() - previewLastHoverAt < 350)
+    ) {
+      active = previewPinnedNode;
+    }
+
+    if (
+      !focusedId ||
+      !active ||
+      expandT < 0.4 ||
+      active.constellationId !== focusedId
+    ) {
+      hidePreview();
       return;
     }
 
     const c = CONSTELLATIONS.find((item) => item.id === focusedId);
-    const node = c?.nodes[hoverNode.nodeIndex];
+    const node = c?.nodes[active.nodeIndex];
     if (!node) {
-      previewEl.hidden = true;
-      previewNodeKey = null;
+      hidePreview();
       return;
     }
 
-    const key = `${focusedId}:${hoverNode.nodeIndex}`;
+    previewPinnedNode = active;
+
+    // Re-anchor next to the star every frame (the camera may still be easing)
+    const s = silhouetteDirs(c, currentSpread())[active.nodeIndex];
+    const p = s && project(s.dir);
+    if (p) positionPreview(p);
+
+    const key = `${focusedId}:${active.nodeIndex}`;
     if (key === previewNodeKey && !previewEl.hidden) return;
     previewNodeKey = key;
 
@@ -643,7 +707,8 @@
     previewRole.textContent = preview.role || c.label;
     previewDesc.textContent = preview.description || "";
     previewDesc.hidden = !preview.description;
-    previewLink.href = node.href || "/";
+    previewLink.href = withFromSky(node.href || "/");
+    previewLink.textContent = node.cta || preview.cta || "view project →";
 
     if (preview.image) {
       previewImage.src = preview.image;
@@ -688,8 +753,8 @@
     camera.targetZoom = FOCAL_DEFAULT;
     hoverNode = null;
     backBtn.hidden = true;
-    if (previewEl) previewEl.hidden = true;
-    previewNodeKey = null;
+    if (previewEl) hidePreview();
+    previewHover = false;
     updateHint();
   }
 
@@ -776,7 +841,7 @@
           return;
         }
 
-        if (node?.href) window.location.href = node.href;
+        if (node?.href) window.location.href = withFromSky(node.href);
         return;
       }
 
@@ -809,6 +874,16 @@
   }
 
   backBtn.addEventListener("click", unfocus);
+
+  if (previewEl) {
+    previewEl.addEventListener("pointerenter", () => {
+      previewHover = true;
+    });
+    previewEl.addEventListener("pointerleave", () => {
+      previewHover = false;
+      previewLastHoverAt = performance.now();
+    });
+  }
 
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && focusedId) unfocus();

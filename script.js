@@ -59,6 +59,27 @@
 
   initPageStars();
 
+  // When arriving from the sky atlas (?from=sky), offer a way back. The home
+  // page already has a fixed top-right sky link, so just relabel it there.
+  function initBackToSky() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("from") !== "sky") return;
+
+    const existing = document.querySelector(".sky-atlas-link");
+    if (existing) {
+      existing.textContent = "← back to the sky";
+      return;
+    }
+
+    const link = document.createElement("a");
+    link.href = "/sky/";
+    link.className = "sky-atlas-link";
+    link.textContent = "← back to the sky";
+    document.body.appendChild(link);
+  }
+
+  initBackToSky();
+
   const canvas = document.getElementById("stars");
   if (!canvas) return;
 
