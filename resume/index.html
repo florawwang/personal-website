@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flora Wang — Resume</title>
+    <meta
+      name="description"
+      content="Resume for Flora Wang — Data Science & Cognitive Science, UC Berkeley."
+    />
+    <meta
+      http-equiv="refresh"
+      content="0;url=https://docs.google.com/document/d/1IldoTah5w_9OLxG0guJEWWsGJfX1sVCC/preview"
+    />
+    <link rel="canonical" href="/resume/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #060814;
+        --star: #dfe6ff;
+        --gold: #c9b896;
+        --muted: #8a93b8;
+        --font-display: "Cormorant Garamond", Georgia, serif;
+        --font-body: "Outfit", system-ui, sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+        font-family: var(--font-body);
+        font-weight: 300;
+        color: var(--star);
+        background:
+          radial-gradient(ellipse at 50% 35%, #0b0e22 0%, #060814 55%, #020309 100%);
+      }
+
+      .resume-card {
+        width: min(22rem, 100%);
+        text-align: center;
+      }
+
+      .resume-name {
+        font-family: var(--font-display);
+        font-size: clamp(1.75rem, 4vw, 2.25rem);
+        letter-spacing: 0.06em;
+        color: var(--gold);
+        margin-bottom: 0.35rem;
+      }
+
+      .resume-label {
+        font-size: 0.78rem;
+        letter-spacing: 0.16em;
+        text-transform: lowercase;
+        color: var(--muted);
+        margin-bottom: 1.75rem;
+      }
+
+      .resume-actions {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .resume-btn {
+        display: inline-block;
+        padding: 0.85rem 1.25rem;
+        border-radius: 0.75rem;
+        border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+        background: rgba(8, 10, 24, 0.72);
+        color: var(--gold);
+        text-decoration: none;
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        text-transform: lowercase;
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease,
+          box-shadow 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .resume-btn--primary {
+        background: color-mix(in srgb, var(--gold) 14%, transparent);
+      }
+
+      .resume-btn:hover,
+      .resume-btn:focus-visible {
+        color: var(--star);
+        border-color: var(--gold);
+        box-shadow: 0 0 22px rgba(201, 184, 150, 0.14);
+        outline: none;
+      }
+
+      .resume-home {
+        display: inline-block;
+        margin-top: 1.5rem;
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: 0.9rem;
+        color: var(--muted);
+        text-decoration: none;
+        border-bottom: 1px solid color-mix(in srgb, var(--muted) 35%, transparent);
+        transition: color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .resume-home:hover,
+      .resume-home:focus-visible {
+        color: var(--gold);
+        border-color: var(--gold);
+        outline: none;
+      }
+    </style>
+    <script>
+      window.location.replace(
+        "https://docs.google.com/document/d/1IldoTah5w_9OLxG0guJEWWsGJfX1sVCC/preview"
+      );
+    </script>
+  </head>
+  <body>
+    <main class="resume-card">
+      <h1 class="resume-name">flora wang</h1>
+      <p class="resume-label">resume</p>
+      <div class="resume-actions">
+        <a
+          class="resume-btn resume-btn--primary"
+          href="https://docs.google.com/document/d/1IldoTah5w_9OLxG0guJEWWsGJfX1sVCC/preview"
+        >
+          open resume →
+        </a>
+        <a
+          class="resume-btn"
+          href="https://docs.google.com/document/d/1IldoTah5w_9OLxG0guJEWWsGJfX1sVCC/export?format=pdf"
+        >
+          download pdf
+        </a>
+      </div>
+      <a class="resume-home" href="/">← back to site</a>
+    </main>
+  </body>
+</html>
